@@ -18,6 +18,10 @@ body {
 
 /* the styles for the header */
 header {
+	display: grid;
+	grid-template-columns: auto auto;
+	justify-content: start;
+	align-items: center;
 	padding: 1.5em 0 2em 0;
 	border-bottom: 3px solid #931420;
 	background-image: linear-gradient(
@@ -34,15 +38,25 @@ header h3 {
 header img {
 	padding: 0 3.75%;            /* 30 / 800 x 100 */
 }
+
+#header-text {
+	padding-left: 2em;
+}
+
 .shadow {
 	text-shadow: 2px 2px 2px #800000;
 }
 /* the styles for the navigation menu */
 #nav_menu ul {
+	display: grid;
+	grid-template-columns: auto auto auto auto auto;
+	justify-content: space-around;
+	align-items: center;
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
 	position: relative;
+	background-color: #800000;
 }
 #nav_menu ul li {
     width: 20%;
@@ -67,6 +81,15 @@ header img {
 }
 #nav_menu ul li:hover > ul {
 	display: block;
+}
+
+main {
+	display: grid;
+	grid-template-columns: 25% 75%;
+	grid-template-areas: 'guest-speakers main-text';
+	gap: 20px;
+	justify-content: start;
+	justify-items: center;
 }
 
 /* the styles for the section */
@@ -101,22 +124,31 @@ section li {
 
 /* the styles for the article */
 article {
+	display: grid;
+	grid-template-columns: 1fr 200px;
 	padding: .5em 0;
 	border-top: 2px solid #800000;
 	border-bottom: 2px solid #800000;
 }
 article h2 {
+	grid-column: 1 / -1;
 	padding-top: 0;
 }
 article h3 {
+	grid-column: 1;
 	font-size: 105%;
-	padding-bottom: .25em;
+	padding-bottom: 0; /* .25em previously*/
 }
 article img {
+	grid-column: 2;
+	grid-row: 2 / 4;
 	max-width: 40%;
-	min-width: 150px;
+	min-width: 225px;
 	margin: .5em 0 1em 1em;
 	border: 1px solid black;
+}
+article p {
+	grid-column: 1;
 }
 
 /* the styles for the aside */
@@ -138,9 +170,18 @@ aside img {
 	padding-bottom: 1em;
 }
 
+#guest-speakers {
+	grid-area: guest-speakers;
+}
+
+#main-text {
+	grid-area: main-text;
+}
+
 /* the styles for the footer */
 footer {
 	background-color: #931420;
+	grid-area: footer;
 
 }
 footer p {
@@ -162,12 +203,26 @@ footer p {
 	aside h3 a {
 		font-size: 85%;
 	}
+	main {
+		grid-template-columns: auto;
+		grid-template-areas: 
+		'guest-speakers'
+		'main-text'
+		;
+	}
 }
 
 @media only screen and (max-width: 648px) {
 	header { text-align: center; }
 	section {
 		width: 95%;
+	}
+	main {
+		grid-template-columns: auto;
+		grid-template-areas: 
+		'guest-speakers'
+		'main-text'
+		;
 	}
 	aside {
 		padding-right: 2.5%;
@@ -190,4 +245,7 @@ footer p {
 
 @media only screen and (max-width: 414px) {
 	body { font-size: 90%; }
+	article img {
+		min-width: 40vw;
+	}
 }
